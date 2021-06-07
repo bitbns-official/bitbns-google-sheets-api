@@ -56,9 +56,11 @@
 </details>
 
 ## About Bitbns
+
 Add content
 
 ### Built With
+
 - [JQuery](https://jquery.com)
 - [Google Apps Script](https://developers.google.com/apps-script)
 - [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
@@ -70,27 +72,33 @@ Add content
 2. Go to bitbns website to generate API keys or click on this [link](https://bitbns.com/trade/#/api-trading/)
 3. Copy the public and private key and paste them into config sheet in the corresponding cells.
 4. Go to add ons and select Bitbns API SIP and then select Bitbns SIP. This adds a sidebar in your copy of sheet.
+5. It is important that you use primary account for trading. If not,then you would have to the application in incognito mode because of primary account issue with google apps script.
 
 
 ### Usage
+
 - After adding the sidebar, you can simply select the token from the given list, and select the frequency and the amount to be invested. The minimum amount should be greater than equal to ₹100. You will get a confirmation alert on the screen when placing the SIP.
 - After the SIP is placed ,the details about that would appear on the SIP sheet.
 - To delete an SIP, you have to enter the trigger id of the SIP and click on delete SIP. 
 - It is very important to not change the trigger id of any SIP as it is very crucial for smooth working of the application. In case you accidentaly change the trigger id and forget what it was originally, you would have to go to the script editor and run the "Delete all SIP" file.
 - You can check your bitbns wallet for more details about your purchases and sellings. 
 - For more details, [here](https://medium.com/) is the medium article about that.
+
+
 ## Issues
 
-- Add content
+- Can't use a secondary account without being in incognito beucase of [this](https://issuetracker.google.com/issues/69270374) issue in GAS(Google Apps Script).
 
 ## Acknowledgements
 
-- [Img Shields](https://shields.io)
 - [Bitbns API](https://github.com/bitbns-official/node-bitbns-api)
-- [MIT License](https://spdx.org/licenses/MIT.html)
 - [Google Apps Script](https://developers.google.com/apps-script)
+- [Img Shields](https://shields.io)
+- [MIT License](https://spdx.org/licenses/MIT.html)
+
 
 ## License
+
 MIT License
 
 Copyright (c) August 2017-2021
@@ -116,6 +124,7 @@ SOFTWARE.
 <!-- CONTACT -->
 
 ## Contact
+
 - [Bitbns Customer Support](https://bitbns.com/contact-us/) 
 
 
