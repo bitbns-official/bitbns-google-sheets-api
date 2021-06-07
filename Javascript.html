@@ -1,0 +1,65 @@
+//Import Jquery through CDN.
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+// Getting all the symbols to be displayed in scroll view of add SIP.
+<script>
+	function onSuccess(tickerList) {
+        // console.log(tickerList)
+
+        for (var i = 0; i < tickerList.length; i++) {
+            var opt = tickerList[i];
+            var el = document.createElement("option");
+            el.text = tickerList[i]
+            // console.log(tickerList[i])
+            document.getElementById("tickers").appendChild(el);
+        }
+        console.log(tickerList)
+    }
+
+    function onFailure(error) {
+        console.log("Error in getting tickers")
+        console.log(error.message);
+    }
+    google.script.run.withFailureHandler(onFailure).withSuccessHandler(onSuccess).getAllSymbols();
+
+</script>
+
+// Add Sip and remove Sip, Form submission scripts
+<script>
+	formSip.onsubmit = async (e) => {
+
+        e.preventDefault();
+        let formData = $('#formSip').serializeArray();
+        // console.log(formData);
+
+        let formValues = {}
+        for (let i of formData) {
+            formValues[i["name"]] = i["value"]
+        }
+        console.log(formValues)
+        google.script.run
+            .withSuccessHandler((res) => {
+                if (res) {
+                    document.getElementById("formSip").reset();
+                }
+            })
+            .getFormData(formValues);
+
+    };
+
+    deleteSip.onsubmit = async (e) => {
+
+        e.preventDefault();
+        let deleteFormData = $('#deleteSip').serializeArray();
+        // console.log(formData);
+
+        let triggerId
+        for (let i of deleteFormData) {
+            triggerId = i["value"]
+        }
+        console.log(triggerId)
+        google.script.run.deletSipWithTriggerId(triggerId);
+        document.getElementById("deleteSip").reset();
+    };
+
+</script>
