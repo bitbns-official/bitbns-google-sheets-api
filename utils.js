@@ -24,8 +24,9 @@ function utils() {
     requestAuthenticate2,
     getAllSymbols,
     alertMessage,
-    sendMail,
-    getDayOfWeek
+    // sendMail,
+    getDayOfWeek,
+    getCurrentDate
   };
 
   /*
@@ -200,19 +201,19 @@ function utils() {
   /**
  * Sends an email to the current user with the error.
  */
-  function sendMail(message) {
+  // function sendMail(message) {
 
-    // Get the email address of the active user - that's you.
-    var email = Session.getActiveUser().getEmail();
+  //   // Get the email address of the active user - that's you.
+  //   var email = Session.getActiveUser().getEmail();
 
-    var subject = "Bitbns SIP error";
+  //   var subject = "Bitbns SIP error";
 
-    // Append a new string to the "url" variable to use as an email body.
-    var body = message;
+  //   // Append a new string to the "url" variable to use as an email body.
+  //   var body = message;
 
-    // Send yourself an email with the error.
-    GmailApp.sendEmail(email, subject, body);
-  }
+  //   // Send yourself an email with the error.
+  //   
+  // }
 
   function getDayOfWeek(d) {
     let weekobj = ScriptApp.WeekDay
@@ -230,6 +231,16 @@ function utils() {
       return weekobj.SATURDAY
     else
       return weekobj.SUNDAY
+  }
+  function getCurrentDate() {
+    var currentdate = new Date();
+    var datetime = currentdate.getDate() + "/"
+      + (currentdate.getMonth() + 1) + "/"
+      + currentdate.getFullYear() + " @ "
+      + currentdate.getHours() + ":"
+      + currentdate.getMinutes() + ":"
+      + currentdate.getSeconds();
+    return datetime;
   }
 }
 

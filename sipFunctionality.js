@@ -37,7 +37,8 @@ function addSip(data) {
   }
 
   // console.log("TriggerID", id, typeof (id));
-  SpreadsheetApp.getActive().getSheetByName("SIP").appendRow([trigger.getUniqueId(), data.tickers, data.frequency, data.unit, data.amount]);
+  let currentDate = utils().getCurrentDate()
+  SpreadsheetApp.getActive().getSheetByName("SIP").appendRow([trigger.getUniqueId(), data.tickers, data.frequency, data.unit, data.amount, currentDate]);
   setupTriggerArguments(trigger, data, true);
 
 }
@@ -78,7 +79,7 @@ function placeSipOrder(data, triggerId) {
             console.log('OrderId ::', res);
           } else {
             let message = `Your SIP with Trigger id : ${triggerId} ,token : ${data.tickers}, amount: ${data.amount} , with the frequency of ${data.frequency} ${data.unit} could not be placed because of ${res.data} `
-            utils().sendMail(message);
+            // utils().sendMail(message);
             console.log('Error ::', res.data);
           }
         })
