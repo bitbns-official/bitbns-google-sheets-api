@@ -185,7 +185,7 @@ function utils() {
       }
     }
     else {
-      return callback(error, "");
+      return callback(query.error, "");
     }
   }
 
