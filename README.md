@@ -22,7 +22,7 @@
   <h3 align="center">Bitbns Google Sheets API</h3>
 
   <p align="center">
-    An awesome website to detect image tampering. Made with Love.
+    Bitbns Google Sheets API
     <br />
     <a href="https://github.com/bitbns-official/bitbns-google-sheets-api"><strong>Explore the docs »</strong></a>
     <br />
@@ -57,7 +57,7 @@
 
 ## About Bitbns
 
-Add content
+www.bitbns.com
 
 ### Built With
 
@@ -72,7 +72,7 @@ Add content
 2. Go to bitbns website to generate API keys or click on this [link](https://bitbns.com/trade/#/api-trading/)
 3. Copy the public and private key and paste them into config sheet in the corresponding cells.
 4. Go to add ons and select Bitbns API SIP and then select Bitbns SIP. This adds a sidebar in your copy of sheet.
-5. It is important that you use primary account for trading. If not,then you would have to the application in incognito mode because of primary account issue with google apps script.
+5. It is important that you use primary google account for trading. If not,then you would have to the application in incognito mode because of primary account issue with google apps script.
 
 
 ### Usage
