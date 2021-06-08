@@ -82,7 +82,7 @@ www.bitbns.com
 - To delete an SIP, you have to enter the trigger id of the SIP and click on delete SIP. 
 - It is very important to not change the trigger id of any SIP as it is very crucial for smooth working of the application. In case you accidentaly change the trigger id and forget what it was originally, you would have to go to the script editor and run the "Delete all SIP" file.
 - You can check your bitbns wallet for more details about your purchases and sellings. 
-- For more details, [here](https://medium.com/) is the medium article about that.
+- For more details, [here](https://medium.com/bitbns/introducing-sip-in-any-token-via-google-sheets-api-bitbns-7f32e9cc169d) is the medium article about that.
 
 
 ## Issues
