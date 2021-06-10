@@ -22,7 +22,7 @@
   <h3 align="center">Bitbns Google Sheets API</h3>
 
   <p align="center">
-    Bitbns Google Sheets API
+    This repo allows user to user Bitbns API via Google Sheets. This had advantage of not needing any servers or deep tech knowledge to do API trading etc. The bundled application allows user to create Systematic Investment Plan(SIP) in any token listed on Bitbns at desired frequency(hourly, daily, weekly or monthly)
     <br />
     <a href="https://github.com/bitbns-official/bitbns-google-sheets-api"><strong>Explore the docs »</strong></a>
     <br />
