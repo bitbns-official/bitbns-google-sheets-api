@@ -45,6 +45,9 @@
       <a href="#built-with">Built With</a>
     </li>
     <li>
+      <a href="#FAQs">FAQs</a>
+    </li>
+    <li>
       <a href="#getting-started">Getting Started</a>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -59,12 +62,14 @@
 
 www.bitbns.com
 
-### Built With
+## Built With
 
 - [JQuery](https://jquery.com)
 - [Google Apps Script](https://developers.google.com/apps-script)
 - [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
+## FAQs
+- Refer to [this]() doc for more information
 
 ## Getting Started
 
@@ -88,6 +93,8 @@ www.bitbns.com
 ## Issues
 
 - Can't use a secondary account without being in incognito beucase of [this](https://issuetracker.google.com/issues/69270374) issue in GAS(Google Apps Script).
+- Matic and BNB have a certain minimum volume requirement to place an order. For matic, minimum volume is 1 matic and for BNB, minimum volume is 0.01 BNB. Since the prices will fluctuate, the price of minimum volume will change as well and thus order might sometimes get rejected if the amount set for the SIP is less than the price of the minimum volume . We are currently working on resolving this issue.
+- USDT pairs might not work as expected. That is currently a work in progress.
 
 ## Acknowledgements
 
