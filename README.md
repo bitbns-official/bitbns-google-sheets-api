@@ -69,7 +69,7 @@ www.bitbns.com
 - [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
 ## FAQs
-- Refer to [this]() doc for more information
+- Refer to [this](https://github.com/bitbns-official/bitbns-google-sheets-api/blob/main/FAQ.md) doc for more information
 
 ## Getting Started
 
