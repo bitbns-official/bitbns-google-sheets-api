@@ -48,6 +48,9 @@
       <a href="#FAQs">FAQs</a>
     </li>
     <li>
+      <a href="#changelog">Changelog</a>
+    </li>
+    <li>
       <a href="#getting-started">Getting Started</a>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -71,6 +74,9 @@ www.bitbns.com
 ## FAQs
 - Refer to [this](https://github.com/bitbns-official/bitbns-google-sheets-api/blob/main/FAQ.md) doc for more information
 
+## Changelog
+- Refer to [this](https://github.com/bitbns-official/bitbns-google-sheets-api/blob/main/Changelog.md) doc for changelogs.
+
 ## Getting Started
 
 1. Make a copy of [this](https://docs.google.com/spreadsheets/d/12krDdNE7VfXxrGJnoIKJ3euzZF-7E_1CercWDF1unO4/edit?usp=sharing) google sheet.
@@ -93,9 +99,7 @@ www.bitbns.com
 ## Issues
 
 - Can't use a secondary account without being in incognito beucase of [this](https://issuetracker.google.com/issues/69270374) issue in GAS(Google Apps Script).
-- Matic and BNB have a certain minimum volume requirement to place an order. For matic, minimum volume is 1 matic and for BNB, minimum volume is 0.01 BNB. Since the prices will fluctuate, the price of minimum volume will change as well and thus order might sometimes get rejected if the amount set for the SIP is less than the price of the minimum volume . We are currently working on resolving this issue.
-- USDT pairs might not work as expected. That is currently a work in progress.
-
+- The issues faced [here](https://github.com/bitbns-official/bitbnspy/issues) might be reflected in the application as well.
 ## Acknowledgements
 
 - [Bitbns API](https://github.com/bitbns-official/node-bitbns-api)

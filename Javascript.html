@@ -3,33 +3,52 @@
 
 <!-- Getting all the symbols to be displayed in scroll view of add SIP. -->
 <script>
-	function onSuccess(tickerList) {
-        // console.log(tickerList)
-
-        for (var i = 0; i < tickerList.length; i++) {
-            var opt = tickerList[i];
-            var el = document.createElement("option");
-            el.text = tickerList[i]
-            // console.log(tickerList[i])
-            document.getElementById("tickers").appendChild(el);
+    var tickerListGlobal;
+    function onSuccess(tickerList) {
+        tickerListGlobal = tickerList;
+        for (var element in tickerList.INR) {
+            $("#tickersInr").append(
+                $("<option></option>").attr("value", element).text(element)
+            );
         }
-        console.log(tickerList)
+
+        for (var element in tickerList.USD) {
+            $("#tickersUsd").append(
+                $("<option></option>").attr("value", element).text(element)
+            );
+        }
     }
 
     function onFailure(error) {
         console.log("Error in getting tickers")
-        console.log(error.message);
+        console.error(error.message);
     }
     google.script.run.withFailureHandler(onFailure).withSuccessHandler(onSuccess).getAllSymbols();
+
+    $("#tickersInr").change(function () {
+        // $(this).val() will work here
+        var minPrice = tickerListGlobal.INR[$(this).val()].price
+        $("#amountInr")[0].placeholder = "Minimum INR " + minPrice;
+
+        $("#amountInr")[0].min = minPrice;
+    });
+
+    $("#tickersUsd").change(function () {
+        // $(this).val() will work here
+        var minPrice = tickerListGlobal.USD[$(this).val()].price
+        $("#amountUsd")[0].placeholder = "Minimum USD " + minPrice;
+
+        $("#amountUsd")[0].min = minPrice;
+    });
 
 </script>
 
 <!-- Add Sip and remove Sip, Form submission scripts -->
 <script>
-	formSip.onsubmit = async (e) => {
+    formSipInr.onsubmit = (e) => {
 
         e.preventDefault();
-        let formData = $('#formSip').serializeArray();
+        let formData = $('#formSipInr').serializeArray();
         // console.log(formData);
 
         let formValues = {}
@@ -40,13 +59,32 @@
         google.script.run
             .withSuccessHandler((res) => {
                 if (res) {
-                    document.getElementById("formSip").reset();
+                    document.getElementById("formSipInr").reset();
                 }
             })
             .getFormData(formValues);
 
     };
+    formSipUsd.onsubmit = (e) => {
 
+        e.preventDefault();
+        let formData = $('#formSipUsd').serializeArray();
+        // console.log(formData);
+
+        let formValues = {}
+        for (let i of formData) {
+            formValues[i["name"]] = i["value"]
+        }
+        console.log(formValues)
+        google.script.run
+            .withSuccessHandler((res) => {
+                if (res) {
+                    document.getElementById("formSipUsd").reset();
+                }
+            })
+            .getFormData(formValues);
+
+    };
     deleteSip.onsubmit = async (e) => {
 
         e.preventDefault();

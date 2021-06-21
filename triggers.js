@@ -77,3 +77,35 @@ function deleteTrigger(trigger) {
     ScriptApp.deleteTrigger(trigger);
     deleteTriggerArguments(trigger.getUniqueId());
 }
+
+/**
+ * Creates the portfolio triggers at the creation of a new sheet
+ */
+function makeTriggersIfEmpty() {
+    if (ScriptApp.getProjectTriggers().length < 1)
+        makeTriggers();
+}
+
+function makeTriggers() {
+    trigger = ScriptApp.newTrigger('portfolioTriggerCall')
+        .timeBased()
+        .everyHours(1)
+        .create();
+
+    setupTriggerArguments(trigger, { portfolio: true }, true);
+
+    trigger = ScriptApp.newTrigger('portfolioTriggerCallDaily')
+        .timeBased()
+        .everyDays(1)
+        .create();
+
+    setupTriggerArguments(trigger, { portfolio: true }, true);
+
+    trigger = ScriptApp.newTrigger('portfolioTriggerCallWeekly')
+        .timeBased()
+        .everyWeeks(1)
+        .onWeekDay(ScriptApp.WeekDay.SUNDAY)
+        .create();
+
+    setupTriggerArguments(trigger, { portfolio: true }, true);
+}

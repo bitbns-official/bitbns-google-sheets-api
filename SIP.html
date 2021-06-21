@@ -2,154 +2,253 @@
 <html lang="en">
 
 <head>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base target="_top">
 
-    <title>SIP</title>
-
-    <!-- Use this CSS stylesheet to ensure that add-ons styling
-     matches the default Google Docs styles -->
-    <link href="https://ssl.gstatic.com/docs/script/css/add-ons.css" rel="stylesheet">
+    <title>Bitbns API SIP</title>
 
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
+    <style>
+        body {
+            background: #353943
+        }
+
+        .rounded {
+            border-radius: 1rem
+        }
+
+        .nav-pills .nav-link {
+            color: #555
+        }
+
+        .nav-pills .nav-link.active {
+            color: white
+        }
+
+        input[type="radio"] {
+            margin-right: 5px
+        }
+
+        .bold {
+            font-weight: bold
+        }
+    </style>
 </head>
 
-<body style="background-color: #e8e8e7;">
+<body>
+    <div class="container text-light bg-dark mt-2">
+        <div class="bg-dark shadow-sm ">
 
-    <div class="container">
-        <section>
-            <form id="formSip" class="form-horizontal" action=" " method="post">
-                <fieldset>
 
-                    <!-- Form Name -->
-                    <legend>
-                        <center>
-                            <h2><b>Add SIP</b></h2>
-                        </center>
-                    </legend><br>
+            <!-- <h1 class=" display-4 text-center">Bitbns SIP</h1> -->
+            <!-- Options Form Tab -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3 d-flex flex-row ">
+                <li class="nav-item m-1"> <a data-toggle="pill" href="#sip-inr" class="nav-link active "> <i
+                            class="fas fa-rupee-sign mr-1"></i>
+                        </i> SIP INR
+                    </a> </li>
+                <li class="nav-item m-1"> <a data-toggle="pill" href="#sip-usd" class="nav-link "><i
+                            class="fas fa-dollar-sign mr-1"></i> SIP USD </a> </li>
+                <!-- <li class="nav-item m-1"> <a data-toggle="pill" href="#sip-volume" class="nav-link "> <i
+                            class="fas fa-box-open mr-1"></i> SIP Volume </a> </li> -->
+                <li class="nav-item m-1 "> <a data-toggle="pill" href="#delete-sip" class="nav-link "><i
+                            class="far fa-trash-alt mr-1"></i>Delete SIP </a> </li>
 
-                    <!-- Select Token-->
+            </ul>
+        </div>
+        <div class="tab-content">
+            <!-- SIP INR-->
+            <div id="sip-inr" class="tab-pane fade show active pt-3">
+                <h4 class="text-center m-2"> SIP in INR Market</h4>
+                <form id="formSipInr" class="form-horizontal" method="POST" action="">
 
+                    <!-- Select Token -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Choose Coin</label>
-                        <div class="col-md-4 selectContainer">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                <select name="tickers" id="tickers" class="form-control selectpicker" required>
+                        <label class="control-label">
+                            <h6>Choose Coin</h6>
+                        </label>
+                        <div class="selectContainer">
+                            <div class="input-group dropdown">
+                                <span class="btn btn-dark"> <i class="fab fa-btc fa-lg"></i></span>
+                                <select name="tickers" id="tickersInr" class="form-control selectpicker" required>
                                     <option value="" disabled selected>Select Token</option>
                                 </select>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label" data-toggle="tooltip"
+                                    title="Example : For frequency = 4 and unit = day, SIP will be executed every 4 days">
+                                    <h6>SIP Frequency <i class="fa fa-question-circle d-inline"></i></h6>
+                                </label>
+                                <div class="input-group">
+                                    <input type="number" placeholder="Frequency" name="frequency"
+                                        class="form-control mr-2" min="1" required>
+                                    <select name="unit" id="unit" class="form-control selectpicker" required>
+                                        <option value="" disabled selected>Select unit</option>
+                                        <option value="hour">Hour</option>
+                                        <option value="day">Day</option>
+                                        <option value="week">Week</option>
+                                        <option value="month">Month</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label">
+                            <h6>Amount in INR</h6>
+                        </label>
+                        <div class=" inputGroupContainer">
+                            <div class="input-group">
+                                <input name="amount" id="amountInr" placeholder="Amount" class="form-control"
+                                    type="number" min="100" required>
+                            </div>
+                        </div>
+                    </div>
 
-                    <!-- Select Frequency-->
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Sip Frequency</label>
-                        <div class="col-md-4 inputGroupContainer ">
-                            <div class="input-group">
-                                <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span> -->
-                                <input name="frequency" placeholder="Frequency" class="form-control"
-                                    style="padding: 1em;" type="number" min="1" required>
-                                <select name="unit" id="unit" class="form-control selectpicker" required>
-                                    <option value="" disabled selected>Select unit</option>
-                                    <option value="hour">Hour</option>
-                                    <option value="day">Day</option>
-                                    <option value="week">Week</option>
-                                    <option value="month">Month</option>
+                        <div class="row col-sm-8">
+                            <button type="reset" class="subscribe btn btn-warning shadow-sm mr-2">
+                                Reset
+                            </button>
+                            <button type="submit" class="subscribe btn btn-success shadow-sm ">
+                                Add SIP
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <!-- END SIP INR -->
+
+
+            <!-- SIP USD -->
+            <div id="sip-usd" class="tab-pane fade pt-3">
+                <h4 class="text-center m-2"> SIP in USD Market</h4>
+                <form id="formSipUsd" class="form-horizontal" method="POST" action="">
+
+                    <!-- Select Token -->
+                    <div class="form-group">
+                        <label class="control-label">
+                            <h6>Choose Coin</h6>
+                        </label>
+                        <div class="selectContainer">
+                            <div class="input-group dropdown">
+                                <span class="btn btn-dark"> <i class="fab fa-btc fa-lg"></i></span>
+                                <select name="tickers" id="tickersUsd" class="form-control selectpicker" required>
+                                    <option value="" disabled selected>Select Token</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Select Amount-->
-
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label" data-toggle="tooltip"
+                                    title="Example : For frequency = 4 and unit = day, SIP will be executed every 4 days">
+                                    <h6>SIP Frequency <i class="fa fa-question-circle d-inline"></i></h6>
+                                </label>
+                                <div class="input-group">
+                                    <input type="number" placeholder="Frequency" name="frequency"
+                                        class="form-control mr-2" min="1" required>
+                                    <select name="unit" id="unit" class="form-control selectpicker" required>
+                                        <option value="" disabled selected>Select unit</option>
+                                        <option value="hour">Hour</option>
+                                        <option value="day">Day</option>
+                                        <option value="week">Week</option>
+                                        <option value="month">Month</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Amount in INR</label>
-                        <div class="col-md-4 inputGroupContainer">
+                        <label class=" control-label">
+                            <h6>Amount in USD</h6>
+                        </label>
+                        <div class=" inputGroupContainer">
                             <div class="input-group">
-                                <input name="amount" placeholder="Amount" class="form-control" type="number"
-                                    style="padding: 1em;" min="100" required>
+                                <input name="amount" id="amountUsd" placeholder="Amount " class="form-control"
+                                    type="number" min="1" required>
                             </div>
                         </div>
                     </div>
 
 
-                    <!-- Buttons -->
                     <div class="form-group">
-
-                        <div class="col-md-4"><br>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="reset" class="btn btn-warning "
-                                    style="padding: 0.2em; margin:0.2em;">Reset</button>
-                                <button type="submit" class="btn btn-success "
-                                    style="padding: 0.2em; margin: 0.2em;">Add
-                                    SIP</button>
-                            </div>
+                        <div class="row col-sm-8">
+                            <button type="reset" class="subscribe btn btn-warning shadow-sm mr-2">
+                                Reset
+                            </button>
+                            <button type="submit" class="subscribe btn btn-success shadow-sm ">
+                                Add SIP
+                            </button>
                         </div>
                     </div>
-                </fieldset>
-            </form>
-        </section>
-        <!-- SIP Add Finished -->
-        <!-- Delete SIP Started -->
-        <section>
-            <form id="deleteSip" class="form-horizontal" action=" " method="post">
-                <fieldset>
 
-                    <!-- Form Name -->
-                    <legend>
-                        <center>
-                            <h2><b>Delete SIP</b></h2>
-                        </center>
-                    </legend><br>
+                </form>
+            </div>
+            <!-- End SIP USD-->
 
 
-                    <!-- Select TriggerID-->
+
+
+            <!-- Delete SIP -->
+            <div id="delete-sip" class="tab-pane fade pt-3">
+                <h4 class="text-center m-2"> Delete SIP</h4>
+                <form id="deleteSip" class="form-horizontal" method="POST" action="">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Trigger ID</label>
-                        <div class="col-md-4 inputGroupContainer">
+                        <label class=" control-label " data-toggle="tooltip"
+                            title="Trigger id is the id generated when you create an SIP.Find your trigger IDs in the sheet 'SIP' ">
+                            <h6>Trigger ID <i class="fa fa-question-circle d-inline"></i></h6>
+                        </label>
+                        <div class=" inputGroupContainer">
                             <div class="input-group">
-                                <input name="triggerId" placeholder="Trigger Id" class="form-control" type="number"
-                                    style="padding: 1em;" required>
+                                <input name="triggerId" placeholder="Trigger ID" class="form-control" type="number"
+                                    required>
                             </div>
                         </div>
                     </div>
 
 
-                    <!-- Buttons -->
                     <div class="form-group">
-
-                        <div class="col-md-4"><br>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="submit" class="btn btn-danger "
-                                    style="padding: 0.2em; margin: 0.2em;">Remove
-                                    SIP</button>
-                            </div>
+                        <div class="row col-sm-8">
+                            <button type="reset" class="subscribe btn btn-warning shadow-sm mr-2">
+                                Reset
+                            </button>
+                            <button type="submit" class="subscribe btn btn-danger shadow-sm ">
+                                Delete SIP
+                            </button>
                         </div>
                     </div>
-                </fieldset>
-            </form>
-        </section>
-    </div><!-- /.container -->
-    <!-- </div> -->
+
+                </form>
+            </div>
+            <!-- Delete SIP End -->
+
+        </div>
+    </div>
+
 
 </body>
-<!-- Javascript Files -->
+
 <?!= include('Javascript'); ?>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-    </script>
-   
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type='text/javascript'
+    src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+<script type='text/javascript'>$(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })</script>
 
 </html>

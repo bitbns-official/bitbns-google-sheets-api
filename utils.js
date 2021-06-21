@@ -24,9 +24,11 @@ function utils() {
     requestAuthenticate2,
     getAllSymbols,
     alertMessage,
-    // sendMail,
+    sendMail,
     getDayOfWeek,
-    getCurrentDate
+    getCurrentDate,
+    gethhmm,
+    getddmmyy
   };
 
   /*
@@ -77,7 +79,7 @@ function utils() {
   function getPayload(symbols, body) {
     // var timeStamp_nonce = parseInt(parseInt(Date.now())) - parseInt(timeOffset)
     let timeStamp_nonce = parseInt(Date.now());
-    console.log(`timestamp :: ${timeStamp_nonce}`);
+    // console.log(`timestamp :: ${timeStamp_nonce}`);
     /*
     Final payload generation
  
@@ -142,7 +144,7 @@ function utils() {
     var url = baseURL + '/' + methodName + '/' + symbols;
     let headers = populateHeadersForPost(symbols, methodName, body);
     options.headers = headers;
-    console.log("options send to the api", options)
+    // console.log("options send to the api", options)
 
     let query = UrlFetchApp.fetch(url, options).getContentText()
     query = JSON.parse(query)
@@ -161,17 +163,21 @@ function utils() {
     }
   }
   function makePostRequest2(methodName, body, callback) {
+    body = JSON.stringify(body)
+
     const options = {
       url: `${baseURL2}/${methodName}`,
       method: 'POST',
       // body: JSON.stringify(body),
-      payload: JSON.stringify(body),
+      payload: body,
       muteHttpExceptions: true,
       followRedirects: true
     }
-    let headers = populateHeadersForPost(body.symbol, methodName, JSON.stringify(body));
+    let headers = populateHeadersForPost(body.symbol, methodName, body);
     options.headers = headers;
+    var url = baseURL2 + '/' + methodName;
     var query = UrlFetchApp.fetch(url, options).getContentText();
+    console.log("response from api", query)
 
     query = JSON.parse(query)
     // Logger.log(`Query Answer :: ${query}`)
@@ -201,20 +207,22 @@ function utils() {
   /**
  * Sends an email to the current user with the error.
  */
-  // function sendMail(message) {
+  function sendMail(message) {
 
-  //   // Get the email address of the active user - that's you.
-  //   var email = Session.getActiveUser().getEmail();
+    // Get the email address of the active user - that's you.
+    var email = Session.getActiveUser().getEmail();
 
-  //   var subject = "Bitbns SIP error";
+    var subject = "Bitbns SIP error";
 
-  //   // Append a new string to the "url" variable to use as an email body.
-  //   var body = message;
+    // Append a new string to the "url" variable to use as an email body.
+    var body = message;
+    MailApp.sendEmail(email, subject, body);
 
-  //   // Send yourself an email with the error.
-  //   
-  // }
+    // Send yourself an email with the error.
 
+  }
+
+  // These functions are used to get dates and time in different formats
   function getDayOfWeek(d) {
     let weekobj = ScriptApp.WeekDay
     if (d == 1)
@@ -241,6 +249,31 @@ function utils() {
       + currentdate.getMinutes() + ":"
       + currentdate.getSeconds();
     return datetime;
+  }
+  function getddmmyy() {
+    var currentdate = new Date();
+    var datetime = currentdate.getDate() + "/"
+      + (currentdate.getMonth() + 1) + "/"
+      + currentdate.getFullYear()
+    return datetime;
+  }
+
+  function gethhmm() {
+    var date = new Date();
+    var hhmm = "";
+    var hr = date.getHours();
+    if (hr < 10) {
+      hhmm += "0";
+    }
+    hhmm += hr;
+    hhmm += ":";
+    var min = date.getMinutes();
+    if (min < 10) {
+      hhmm += "0";
+    }
+    hhmm += min;
+
+    return hhmm;
   }
 }
 

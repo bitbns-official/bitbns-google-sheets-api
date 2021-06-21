@@ -37,7 +37,7 @@ function tasks() {
 
     function load_apiKeys() {
         let keys = SpreadsheetApp.getActive().getSheetByName("config").getRange("B2:B3").getValues();
-        console.log("Api keys from the sheet", keys);
+        // console.log("Api keys from the sheet", keys);
         let data = {
             apiKey: keys[0][0],
             apiSecretKey: keys[1][0]
@@ -83,7 +83,7 @@ function tasks() {
     }
     function cancelOrder(symbol, entry_id, callback) {
         utils().requestAuthenticate(symbol, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { entry_id: entry_id };
             utils().makePostRequest(symbol, "cancelOrder", body, callback);
         } else {
@@ -100,7 +100,7 @@ function tasks() {
     function listOpenOrders(symbol, callback) {
         utils().requestAuthenticate(symbol, callback);
 
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { page: 0 };
             utils().makePostRequest(symbol, "listOpenOrders", body, callback);
         } else {
@@ -110,7 +110,7 @@ function tasks() {
     function listExecutedOrders(symbol, pageNo, since, callback) {
         utils().requestAuthenticate(symbol, callback);
 
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { page: pageNo, since: since };
             utils().makePostRequest(symbol, "listExecutedOrders", body, callback);
         } else {
@@ -120,7 +120,7 @@ function tasks() {
     function listOpenStopOrders(symbol, callback) {
         utils().requestAuthenticate(symbol, callback);
 
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { page: 0 };
             utils().makePostRequest(symbol, "listOpenStopOrders", body, callback);
         } else {
@@ -175,7 +175,7 @@ function tasks() {
     }
     function buyStopLoss(symbol, quantity, rate, t_rate, callback) {
         utils().requestAuthenticate(symbol, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { quantity: quantity, rate: rate, t_rate: t_rate };
             utils().makePostRequest(symbol, "buyStopLoss", body, callback);
         } else {
@@ -184,7 +184,7 @@ function tasks() {
     }
     function sellStopLoss(symbol, quantity, rate, t_rate, callback) {
         utils().requestAuthenticate(symbol, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { quantity: quantity, rate: rate, t_rate: t_rate };
             utils().makePostRequest(symbol, "sellStopLoss", body, callback);
         } else {
@@ -193,7 +193,7 @@ function tasks() {
     }
     function getCoinAddress(symbol, callback) {
         utils().requestAuthenticate(symbol, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = {};
             utils().makePostRequest(symbol, "getCoinAddress", body, callback);
         } else {
@@ -202,7 +202,7 @@ function tasks() {
     }
     function placeSellOrder(symbol, quantity, rate, callback) {
         utils().requestAuthenticate(symbol, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { quantity: quantity, rate: rate };
             utils().makePostRequest(symbol, "placeSellOrder", body, callback);
         } else {
@@ -211,7 +211,7 @@ function tasks() {
     }
     function placeOrders(orders_obj, callback) {
         utils().requestAuthenticate2(orders_obj, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = orders_obj;
             utils().makePostRequest2("orders", body, callback);
         } else {
@@ -220,7 +220,7 @@ function tasks() {
     }
     function getOrders(orders_obj, callback) {
         utils().requestAuthenticate2(orders_obj, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = orders_obj;
             utils().makePostRequest2("getordersnew", body, callback);
         } else {
@@ -229,7 +229,7 @@ function tasks() {
     }
     function cancelStopLossOrder(symbol, entry_id, callback) {
         utils().requestAuthenticate(symbol, callback);
-        if (utils().verifyApiKeys(utils().apiKeys)) {
+        if (utils().verifyApiKeys(apiKeys)) {
             let body = { entry_id: entry_id };
             utils().makePostRequest(symbol, "cancelStopLossOrder", body, callback);
         } else {
@@ -295,7 +295,7 @@ function tasks() {
         let query = UrlFetchApp.fetch(options.url, options);
         let responseCode = query.getResponseCode()
         query = JSON.parse(query)
-        console.log("Ticker query", query)
+        // console.log("Ticker query", query)
 
         if (responseCode == 200) {
             let symbolArray = symbols.split(',');

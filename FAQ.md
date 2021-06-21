@@ -20,8 +20,9 @@
 
 ## How to Add an SIP?
 1. Go to the add ons in your sheet and open the SIP add on.
-2. Select the token from the given list you want to invest in.
-3. Select the frequency and unit with which the token would be bought. Say you place a daily SIP of 100 Rs in ethereum. You would enter the frequency as 1 and unit as day and the amount as 100.
+2. Select the market you want to start the SIP in.
+3. Select the token from the given list you want to invest in.
+4. Select the frequency and unit with which the token would be bought. Say you place a daily SIP of 100 Rs in ethereum. You would enter the frequency as 1 and unit as day and the amount as 100.
 
 
 ## How to delete an SIP?
@@ -50,11 +51,15 @@ Another example would be you want your Sip to invest money every 2 months, then 
 
 #### 5. I placed an SIP but it doesn’t reflect in my wallet. What happened?
 - Say you placed an SIP at the frequency of 1 day. So your order would be placed within a day. You will get a notification in your bitbns account every time an order is placed by the SIP.
+- Daily orders are placed at midnight.
+- Hourly, weekly and monthly orders are first placed instantly at the time of SIP creation and then continue with the stated frequency.
 
-#### 6. I placed a weekly SIP and it has been 5 days but no order has been placed. Why?
-- The order would be placed after 7 days from the day of placement. Although we’re collecting feedback and will add instant order place for weekly as well.
+#### 6. I have already made a copy of previous version, how should I update to new version?
+
+- An easier way would be to simply delete previous the previous sheet and make a copy of the current version and start your SIPs there.
+- A bit more complex method would be to go to Tools-> Script Editor and replace the previous code with the code of current version. The code can be found in both github repository as well as script editor of the new version of sheet. To make copy of new sheets, go to the sheet provided by us, right click on the tab of the sheet you want to make a copy of and enter your sheet URL in that. After that, if the sheet with same name previously exists,delete that and rename the newly made sheet from "Copy of xyz" to "xyz".
+
 
 ## Known Issues
 - Can't use a secondary account without being incognito because of [this](https://issuetracker.google.com/issues/69270374?pli=1) issue in GAS(Google Apps Script).
-- Matic and BNB have a certain minimum volume requirement to place an order. For matic, minimum volume is 1 matic and for BNB, minimum volume is 0.01 BNB. Since the prices will fluctuate, the price of minimum volume will change as well and thus order might sometimes get rejected if the amount set for the SIP is less than the price of the minimum volume . We are currently working on resolving this issue.
-- USDT pairs might not work as expected. That is currently a work in progress.
+- The issues faced [here](https://github.com/bitbns-official/bitbnspy/issues) might be reflected in the application as well.
